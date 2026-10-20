@@ -1,0 +1,100 @@
+### Necessário para pegar o token
+### Post
+# @name loginAutenticado
+POST http://localhost:40000/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Seta o token
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+###
+
+### sem token
+GET http://localhost:40000/getAllClientes HTTP/1.1
+content-type: application/json
+
+###
+
+### token inválido
+GET http://localhost:40000/getAllClientes HTTP/1.1
+content-type: application/json
+Authorization: Bearer token-invalido
+
+###
+
+### dados inválidos
+POST http://localhost:40000/insertCliente HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "",
+    "email": "nao-e-email",
+    "telefone": ""
+}
+
+###
+
+### teste de inserção de cliente
+POST http://localhost:40000/insertCliente HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Carlos Matias",
+    "email": "carlos.matias@example.com",
+    "telefone": "(17) 97777-0003"
+}
+
+###
+
+### teste de buscar todos os clientes
+GET http://localhost:40000/getAllClientes HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+### teste de buscar cliente por ID
+GET http://localhost:40000/getClienteByID/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+### ID inexistente
+GET http://localhost:40000/getClienteByID/999999 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+### teste de atualização de cliente
+PUT http://localhost:40000/updateCliente/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Ana Lima Atualizada",
+    "email": "ana.lima@example.com",
+    "telefone": "(17) 99999-0001"
+}
+
+###
+
+### teste de exclusão lógica
+DELETE http://localhost:40000/deleteCliente/3 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+### registro já removido ou inexistente
+DELETE http://localhost:40000/deleteCliente/999999 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}

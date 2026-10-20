@@ -1,0 +1,114 @@
+### Necessário para pegar o token
+### Post
+# @name loginAutenticado
+POST http://localhost:40000/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "password": "admin"
+}
+
+### Seta o token
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+###
+
+### sem token
+GET http://localhost:40000/getAllServicos HTTP/1.1
+content-type: application/json
+
+###
+
+### token inválido
+GET http://localhost:40000/getAllServicos HTTP/1.1
+content-type: application/json
+Authorization: Bearer token-invalido
+
+###
+
+### relacionamento inválido
+POST http://localhost:40000/insertServico HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "clienteid": 999999,
+    "titulo": "Serviço sem cliente",
+    "descricao": "Não deve gravar",
+    "valor": 100.00,
+    "dataentrega": "2026-12-01"
+}
+
+###
+
+### dados inválidos
+POST http://localhost:40000/insertServico HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "clienteid": 1,
+    "titulo": "",
+    "descricao": "",
+    "valor": -10,
+    "dataentrega": "31-02-2026"
+}
+
+###
+
+### teste de inserção de serviço
+POST http://localhost:40000/insertServico HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "clienteid": 1,
+    "titulo": "Identidade visual",
+    "descricao": "Logo e paleta de cores",
+    "valor": 750.50,
+    "dataentrega": "2026-12-20"
+}
+
+###
+
+### teste de buscar todos os serviços
+GET http://localhost:40000/getAllServicos HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+### teste de buscar serviço por ID
+GET http://localhost:40000/getServicoByID/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+### clientes para o formulário
+GET http://localhost:40000/getClientesToServicos HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+###
+
+### teste de atualização de serviço
+PUT http://localhost:40000/updateServico/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "clienteid": 1,
+    "titulo": "Site institucional revisado",
+    "descricao": "Paginas, formulario e ajustes",
+    "valor": 2100.00,
+    "dataentrega": "2026-11-30"
+}
+
+###
+
+### teste de exclusão lógica
+DELETE http://localhost:40000/deleteServico/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}

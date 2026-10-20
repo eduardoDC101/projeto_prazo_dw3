@@ -1,0 +1,31 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <section class="login-screen d-flex align-items-center justify-content-center">
+    <div class="login-card card shadow-lg border-0">
+      <div class="login-banner px-4 px-md-5 py-4">
+        <p class="page-kicker fw-semibold mb-2">Prazo</p>
+        <h1 class="h3 fw-bold mb-1">Acesso ao sistema</h1>
+        <p class="mb-0 login-subtitle">Clientes, serviços e prazos de entrega.</p>
+      </div>
+      <div class="card-body p-4 p-md-5">
+
+        <form id="loginForm" data-servidor-dw3="{{ servidorDw3 }}">
+          <div id="loginError" class="alert alert-danger d-none" role="alert"></div>
+          <div class="mb-3">
+            <label class="form-label" for="usuario">Usuário</label>
+            <input class="form-control" id="usuario" name="usuario" type="text" placeholder="Seu usuário" autocomplete="username" required>
+          </div>
+          <div class="mb-4">
+            <label class="form-label" for="senha">Senha</label>
+            <input class="form-control" id="senha" name="senha" type="password" placeholder="Sua senha" autocomplete="current-password" required>
+          </div>
+          <button class="btn btn-primary w-100" type="submit">Entrar</button>
+        </form>
+        <p class="text-secondary small mt-4 mb-0">Acesso de desenvolvimento: admin / admin</p>
+      </div>
+    </div>
+  </section>
+  <script src="/js/dw3frontend.js"></script>
+  <script src="/apps/login/vwLogin.js"></script>
+{% endblock %}

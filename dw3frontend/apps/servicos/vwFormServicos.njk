@@ -1,0 +1,76 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css">
+
+  <header class="page-header">
+    <p class="page-kicker text-primary fw-semibold mb-2">Cadastro</p>
+    <h1 class="h3 fw-bold mb-2" id="tituloFormulario">Formulário de serviços</h1>
+    <p class="text-secondary mb-0">Vincule o serviço a um cliente e informe valor e entrega.</p>
+  </header>
+
+  <div class="card page-card border-0 shadow-sm">
+    <div class="card-body p-4">
+      <form id="frmServicos" data-servidor-dw3="{{ servidorDw3 }}">
+        <input type="hidden" id="id" name="id" value="0">
+        <input type="hidden" id="removido" name="removido" value="false">
+
+        <div class="row g-3">
+          <div class="col-12 col-md-3 d-none" id="grupoId">
+            <label for="idVisivel" class="form-label">ID</label>
+            <input type="text" class="form-control" id="idVisivel" value="" disabled>
+          </div>
+
+          <div class="col-12 col-md-9">
+            <label for="clienteid" class="form-label">Cliente</label>
+            <select class="form-select" id="clienteid" name="clienteid" required>
+              <option value="">Selecione um cliente</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label for="titulo" class="form-label">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" maxlength="120" required>
+          </div>
+
+          <div class="col-12">
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea class="form-control" id="descricao" name="descricao" maxlength="500" rows="3"></textarea>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label for="valor" class="form-label">Valor</label>
+            <input type="number" class="form-control" id="valor" name="valor" min="0" step="0.01" required>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label for="dataentrega" class="form-label">Data de entrega</label>
+            <input type="date" class="form-control" id="dataentrega" name="dataentrega" required>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
+          <button type="button" class="btn btn-primary d-none" id="btnInserirServico">
+            <i class="bi bi-plus-lg me-1"></i>Inserir
+          </button>
+          <button type="button" class="btn btn-warning d-none" id="btnAtualizarServico" disabled>
+            <i class="bi bi-pencil-square me-1"></i>Atualizar
+          </button>
+          <button type="button" class="btn btn-danger d-none" id="btnRemoverServico" disabled>
+            <i class="bi bi-trash me-1"></i>Remover
+          </button>
+          <a class="btn btn-outline-secondary" href="/servicos" id="btnFecharServico">
+            <i class="bi bi-x-lg me-1"></i>Fechar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/dw3frontend.js"></script>
+  <script src="https://code.jquery.com/jquery-4.0.0.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="/apps/servicos/vwFormServicos.js"></script>
+{% endblock %}

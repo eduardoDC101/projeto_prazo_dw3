@@ -1,0 +1,32 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <header class="page-header">
+    <p class="page-kicker text-primary fw-semibold mb-2">Prazo</p>
+    <h1 class="display-6 fw-bold mb-2">Painel principal</h1>
+    <p class="text-secondary mb-0">Cadastre clientes e os serviços contratados, com valor e data de entrega.</p>
+  </header>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card page-card shortcut-card shortcut-clientes border-0 h-100">
+        <div class="card-body p-4">
+          <h2 class="h5 fw-semibold">Clientes</h2>
+          <p class="text-secondary">Nome, e-mail e telefone de quem contratou o trabalho.</p>
+          <a class="btn btn-primary" href="/clientes">Abrir clientes</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card page-card shortcut-card shortcut-servicos border-0 h-100">
+        <div class="card-body p-4">
+          <h2 class="h5 fw-semibold">Serviços</h2>
+          <p class="text-secondary">Título, valor e prazo de entrega ligados a um cliente.</p>
+          <a class="btn btn-primary" href="/servicos">Abrir serviços</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/dw3frontend.js"></script>
+  <script src="/apps/home/vwHome.js"></script>
+{% endblock %}
