@@ -186,6 +186,13 @@ async function main() {
     apoio.data && apoio.data.status
   );
 
+  const clienteComServico = await req("DELETE", "/deleteCliente/" + cliente.id, { token });
+  assert(
+    clienteComServico.data.status === "Cliente possui serviços ativos." && clienteComServico.data.linhasAfetadas === 0,
+    "DeleteCliente recusa cliente com serviços ativos",
+    clienteComServico.data
+  );
+
   const apagouServico = await req("DELETE", "/deleteServico/" + servicoCriado.id, { token });
   assert(apagouServico.data.status === "ok" && apagouServico.data.linhasAfetadas === 1, "DeleteServico", apagouServico.data);
 

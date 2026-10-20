@@ -1,6 +1,6 @@
 # Prazo
 
-Sistema de clientes e serviços para freelancers, feito para a matéria de Desenvolvimento Web III.
+Módulo financeiro de um ERP de controle de cooperativas, feito para a matéria de Desenvolvimento Web III. O sistema cadastra clientes e as contas a receber pelos serviços prestados a eles.
 
 O front-end e o back-end são dois processos Express. Somente o back-end acessa o PostgreSQL. A organização segue o exemplo da disciplina: CommonJS, Nunjucks, models, controllers, rotas nomeadas e respostas.
 
@@ -8,10 +8,11 @@ O front-end e o back-end são dois processos Express. Somente o back-end acessa 
 
 - `clientes`: `id`, `nome`, `email`, `telefone`, `removido`.
 - `servicos`: `id`, `clienteid`, `titulo`, `descricao`, `valor numeric(12,2)`, `dataentrega`, `removido`.
-- Um cliente pode ter vários serviços. O valor do serviço é o lançamento financeiro do freelancer.
+- `servicos` funciona como a tabela de contas a receber: cada registro é um serviço prestado a um cliente, com o valor a receber (`valor`) e a data de vencimento (`dataentrega`).
+- Um cliente pode ter várias contas a receber (relação 1:N).
 - `usuarios` serve só para o login. Não é uma das duas tabelas do CRUD.
 
-A exclusão muda `removido` para `true`. A linha continua no banco, e o serviço não é apagado quando o cliente é removido.
+A exclusão muda `removido` para `true`. A linha continua no banco. Um cliente só pode ser removido depois que todos os seus serviços forem removidos.
 
 ## Pré-requisitos
 

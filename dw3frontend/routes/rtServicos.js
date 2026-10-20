@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
   res.render('servicos/vwLstServicos', {
-    title: 'Serviços',
+    title: 'Contas a receber',
     showNavbar: true,
     activeMenu: 'servicos',
     servidorDw3: process.env.SERVIDOR_DW3

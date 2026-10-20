@@ -62,11 +62,23 @@ const UpdateCliente = async (clienteIDPar, clienteREGPar) => {
   return { msg, linhasAfetadas };
 };
 
+async function possuiServicosAtivos(clienteIDPar) {
+  const consulta = await db.query(
+    "SELECT id FROM servicos WHERE clienteid = $1 AND removido = false LIMIT 1",
+    [clienteIDPar]
+  );
+  return consulta.rowCount > 0;
+}
+
 const DeleteCliente = async (clienteIDPar) => {
   let linhasAfetadas;
   let msg = "ok";
 
   try {
+    if (await possuiServicosAtivos(clienteIDPar)) {
+      return { msg: "Cliente possui serviços ativos.", linhasAfetadas: 0 };
+    }
+
     linhasAfetadas = (
       await db.query(
         "UPDATE clientes SET removido = true WHERE id = $1 AND removido = false",
