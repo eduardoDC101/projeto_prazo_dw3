@@ -1,8 +1,8 @@
 # Prazo
 
-Sistema de clientes e serviços para freelancers, feito para o 1º trabalho de Desenvolvimento Web III.
+Sistema de clientes e serviços para freelancers, feito para a matéria de Desenvolvimento Web III.
 
-O front-end e o back-end são dois processos Express. Somente o back-end acessa o PostgreSQL. A organização segue o exemplo `dw3backend` / `dw3frontend` da disciplina: CommonJS, Nunjucks, models `mdl`, controllers `ctl`, rotas nomeadas e respostas `{ status, registro }` ou `{ status, linhasAfetadas }`.
+O front-end e o back-end são dois processos Express. Somente o back-end acessa o PostgreSQL. A organização segue o exemplo da disciplina: CommonJS, Nunjucks, models, controllers, rotas nomeadas e respostas.
 
 ## O que o sistema guarda
 
@@ -17,8 +17,6 @@ A exclusão muda `removido` para `true`. A linha continua no banco, e o serviço
 
 - Node.js 18 ou superior.
 - PostgreSQL em execução.
-
-O banco deste projeto se chama `prazo`. Ele não usa os bancos `dw3` e `dw3_financeiro`.
 
 ## Configuração
 
@@ -42,8 +40,6 @@ Variáveis do back-end: `PORT`, `SECRET_API`, `DB_NAME`, `DB_USER`, `DB_PASS`, `
 
 Variável do front-end: `SERVIDOR_DW3=http://localhost:40000`.
 
-O usuário de desenvolvimento criado pelo SQL é `admin`, com senha `admin`, no mesmo padrão da apostila. A senha fica gravada com `crypt` do PostgreSQL, não em texto puro.
-
 ## Execução
 
 Abra dois terminais.
@@ -63,8 +59,6 @@ npm start
 - API: http://localhost:40000
 - Telas: http://localhost:40100
 
-Entre com `admin` / `admin`. O link Sair abre o login e apaga o cookie `IsLogged` e o token do `localStorage`.
-
 ## Testes
 
 Com o back-end no ar:
@@ -81,17 +75,3 @@ Os arquivos `.rest`, para o REST Client do VS Code, estão em:
 - `dw3backend/apps/servicos/tests/testServicos.rest`
 
 Execute primeiro o pedido nomeado `loginAutenticado`. Os demais usam o token dessa resposta. Alguns pedidos de exclusão alteram os dados de exemplo.
-
-## Decisões que diferem da apostila
-
-Elas estão detalhadas em `PLANEJAMENTO.md`. Em resumo:
-
-- As colunas se chamam `id` e `removido` porque o PDF pede ID e Removido. A apostila usa `alunoid` e `deleted`.
-- Todas as rotas de clientes e serviços exigem JWT. No exemplo da aula, `getAllAlunos` ficava aberto.
-- A mensagem de erro do banco não volta no JSON. O formato da resposta continua o da aula.
-- A data sai do banco como `AAAA-MM-DD`, para não mudar o dia por causa do fuso.
-- O host local do PostgreSQL é `localhost`. O exemplo com Docker usa `172.17.0.1`.
-
-## Entrega no GitHub
-
-O enunciado pede um repositório próprio, diferente do repositório das aulas, e o envio do link no Moodle. O arquivo `.gitignore` já ignora `node_modules`, `.env` e `dw3frontend.env`. A publicação do repositório remoto não foi feita nesta implementação.
