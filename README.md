@@ -4,7 +4,7 @@ Módulo financeiro de um ERP de controle de cooperativas, feito para a matéria 
 
 O front-end e o back-end são dois processos Express. Somente o back-end acessa o PostgreSQL. A organização segue o exemplo da disciplina: CommonJS, Nunjucks, models, controllers, rotas nomeadas e respostas.
 
-## O que o sistema guarda
+## O que o sistema guarda:
 
 - `clientes`: `id`, `nome`, `email`, `telefone`, `removido`.
 - `servicos`: `id`, `clienteid`, `titulo`, `descricao`, `valor numeric(12,2)`, `dataentrega`, `removido`.
