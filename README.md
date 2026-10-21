@@ -1,18 +1,16 @@
 # Prazo
 
-Módulo financeiro de um ERP de controle de cooperativas, feito para a matéria de Desenvolvimento Web III. O sistema cadastra clientes e as contas a receber pelos serviços prestados a eles.
-
-O front-end e o back-end são dois processos Express. Somente o back-end acessa o PostgreSQL. A organização segue o exemplo da disciplina: CommonJS, Nunjucks, models, controllers, rotas nomeadas e respostas.
+Um ERP de controle de cooperativas feito para a materia de Desenvolvimento Web 3. O sistema cadastra clientes e as contas a receber pelos serviços prestados a eles.
 
 ## O que o sistema guarda
 
 - `clientes`: `id`, `nome`, `email`, `telefone`, `removido`.
 - `servicos`: `id`, `clienteid`, `titulo`, `descricao`, `valor numeric(12,2)`, `dataentrega`, `removido`.
-- `servicos` funciona como a tabela de contas a receber: cada registro é um serviço prestado a um cliente, com o valor a receber (`valor`) e a data de vencimento (`dataentrega`).
-- Um cliente pode ter várias contas a receber (relação 1:N).
-- `usuarios` serve só para o login. Não é uma das duas tabelas do CRUD.
+- `servicos` funciona como a tabela de contas a receber, cada registro é um serviço prestado a um cliente, com o valor a receber (`valor`) e a data de vencimento (`dataentrega`).
+- Um cliente pode ter varias contas a receber (relação 1:N).
+- `usuarios` serve só para o login, não é uma das duas tabelas do CRUD.
 
-A exclusão muda `removido` para `true`. A linha continua no banco. Um cliente só pode ser removido depois que todos os seus serviços forem removidos.
+A exclusão muda `removido` para `true`, a linha continua no banco. Um cliente só pode ser removido depois que todos os seus serviços forem removidos.
 
 ## Pré-requisitos
 
@@ -75,4 +73,4 @@ Os arquivos `.rest`, para o REST Client do VS Code, estão em:
 - `dw3backend/apps/clientes/tests/testClientes.rest`
 - `dw3backend/apps/servicos/tests/testServicos.rest`
 
-Execute primeiro o pedido nomeado `loginAutenticado`. Os demais usam o token dessa resposta. Alguns pedidos de exclusão alteram os dados de exemplo.
+Rode primeiro o pedido nomeado `loginAutenticado`. Os demais usam o token dessa resposta. Alguns pedidos de exclusão alteram os dados de exemplo.
