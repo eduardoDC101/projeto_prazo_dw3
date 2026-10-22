@@ -46,7 +46,7 @@ function validarServico(registro) {
 
   const data = String(registro.dataentrega || "").trim();
   if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) {
-    return "Informe a data de vencimento.";
+    return "Informe a data de entrega.";
   }
 
   const partes = data.split("-").map((parte) => parseInt(parte, 10));
@@ -56,7 +56,7 @@ function validarServico(registro) {
     conferida.getMonth() !== partes[1] - 1 ||
     conferida.getDate() !== partes[2]
   ) {
-    return "Informe uma data de vencimento válida.";
+    return "Informe uma data de entrega válida.";
   }
 
   registro.dataentrega = data;

@@ -1,13 +1,12 @@
 # Prazo
 
-Um ERP de controle de cooperativas feito para a materia de Desenvolvimento Web 3. O sistema cadastra clientes e as contas a receber pelos serviços prestados a eles.
+Sistema de clientes e serviços para freelancers, feito para a matéria de Desenvolvimento Web 3.
 
-## O que o sistema guarda
+## O que o sistema guarda:
 
 - `clientes`: `id`, `nome`, `email`, `telefone`, `removido`.
 - `servicos`: `id`, `clienteid`, `titulo`, `descricao`, `valor numeric(12,2)`, `dataentrega`, `removido`.
-- `servicos` funciona como a tabela de contas a receber, cada registro é um serviço prestado a um cliente, com o valor a receber (`valor`) e a data de vencimento (`dataentrega`).
-- Um cliente pode ter varias contas a receber (relação 1:N).
+- Um cliente pode ter vários serviços. O valor do serviço é o lançamento financeiro do freelancer.
 - `usuarios` serve só para o login, não é uma das duas tabelas do CRUD.
 
 A exclusão muda `removido` para `true`, a linha continua no banco. Um cliente só pode ser removido depois que todos os seus serviços forem removidos.
